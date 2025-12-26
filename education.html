@@ -1,266 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Education - Milan Pathak</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <style>
-        /* General Styles */
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: #333;
-            line-height: 1.6;
-            background-color: #f5f5f7;
-            overflow-x: hidden;
-            opacity: 0; /* Initially hidden */
-            transition: opacity 1s ease-in-out; /* Smooth fade-in */
-        }
-        body.loaded {
-            opacity: 1; /* Fully visible when the page is loaded */
-        }
-        h1, h2, h3, p {
-            margin: 0;
-            padding: 0;
-        }
-        a {
-            text-decoration: none;
-            color: #0071e3;
-            transition: color 0.3s ease;
-        }
-        a:hover {
-            color: #0056b3;
-        }
-        /* Navigation Bar */
-        nav {
-            display: flex;
-            justify-content: center;
-            background: white;
-            border-bottom: 1px solid #e5e5e5;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 10px 0;
-        }
-        nav a {
-            margin: 0 20px;
-            font-size: 1rem;
-            color: #333;
-        }
-        nav a:hover {
-            color: #0071e3;
-        }
-        /* Education Section */
-        section {
-            padding: 60px 15%;
-            background: linear-gradient(to bottom, rgba(249, 249, 249, 0.8), rgba(255, 255, 255, 0.8));
-            position: relative;
-            overflow: hidden;
-        }
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('Photo_Education.jpg') no-repeat center center fixed;
-            background-size: cover;
-            opacity: 0;
-            z-index: -1;
-            animation: fadeIn 2s ease-in-out forwards;
-        }
-        h1 {
-            text-align: center;
-            font-size: 3rem;
-            color: #333;
-            margin-bottom: 40px;
-            opacity: 0;
-            animation: fadeInUp 1.5s ease-in-out forwards;
-        }
-        /* Education Cards */
-        .education-card {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin-bottom: 40px;
+        .education-item {
             display: flex;
             align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1.5s ease-in-out forwards;
-            animation-delay: 0.5s;
+            gap: 1.5rem;
         }
-        .education-card:nth-child(2) {
-            animation-delay: 1s;
-        }
-        .education-card:nth-child(3) {
-            animation-delay: 1.5s;
-        }
-        .education-card:nth-child(4) {
-            animation-delay: 2s;
-        }
-        .education-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-        .institution-logo {
+
+        .edu-logo {
             width: 80px;
             height: auto;
-            margin-right: 20px;
             flex-shrink: 0;
-        }
-        .education-content {
-            flex: 1;
-        }
-        .institution-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #0056b3;
-            margin-bottom: 5px;
-        }
-        .institution-details {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-        .course-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-        .course-list li {
-            background: #f1f1f1;
-            margin: 5px 0;
-            padding: 10px 15px;
             border-radius: 8px;
-            font-size: 0.95rem;
-            color: #555;
+            /* Optional rounded corners for logos */
         }
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+        @media (max-width: 600px) {
+            .education-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="index.html">Home</a>
-        <!-- <a href="about.html">About</a> -->
-        <a href="experience.html">Experience</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html" style="font-weight: 700; font-size: 1.2rem;">Milan Pathak</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"
+            style="background:none; border:none; color:inherit; font-size:1.5rem; cursor:pointer;">
+            <ion-icon name="menu-outline"></ion-icon>
+        </button>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="experience.html">Experience</a>
+            <a href="education.html" class="active">Education</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                <ion-icon name="moon-outline"></ion-icon>
+            </button>
+        </div>
     </nav>
 
-    <!-- Education Section -->
-    <section>
-        <h1>Education</h1>
-
-        <!-- Education Cards -->
-        <div class="education-card">
-            <img src="logo_jmu.png" alt="Julius-Maximilians-Universität Würzburg" class="institution-logo">
-            <div class="education-content">
-                <div class="institution-title">Master of Science, Satellite Technology</div>
-                <div class="institution-details">
-                    <em>Julius-Maximilians-Universität Würzburg, Germany</em><br>
-                    <strong>2021 - 2024</strong>
-                </div>
-                <ul class="course-list">
-                    <li>Advanced Satellite Systems</li>
-                    <li>Spacecraft Design and Propulsion</li>
-                    <li>Orbital Mechanics</li>
-                    <li>Satellite Communication Systems</li>
-                </ul>
-            </div>
+    <!-- Hero -->
+    <header class="parallax-header" style="background-image: url('Photo_Education.jpg'); height: 60vh;">
+        <div class="parallax-content">
+            <h1>Education</h1>
+            <p>Academic milestones and qualifications.</p>
         </div>
+    </header>
 
-        <div class="education-card">
-            <img src="logo_ku.png" alt="Kathmandu University" class="institution-logo">
-            <div class="education-content">
-                <div class="institution-title">Bachelor of Engineering, Mechanical Engineering</div>
-                <div class="institution-details">
-                    <em>Kathmandu University, Nepal</em><br>
-                    <strong>2016 - 2020</strong>
-                </div>
-                <ul class="course-list">
-                    <li>Thermodynamics</li>
-                    <li>Fluid Mechanics</li>
-                    <li>Material Science</li>
-                    <li>Manufacturing Processes</li>
-                </ul>
-            </div>
-        </div>
+    <!-- Education List -->
+    <section class="section fade-in">
+        <div class="grid" style="grid-template-columns: 1fr; max-width: 900px; margin: 0 auto;">
 
-        <div class="education-card">
-            <img src="logo_kmc.png" alt="Kathmandu Model College" class="institution-logo">
-            <div class="education-content">
-                <div class="institution-title">High School, Science</div>
-                <div class="institution-details">
-                    <em>Bagbazar, Kathmandu, Nepal</em><br>
-                    <strong>2014 - 2016</strong>
+            <!-- Master's -->
+            <div class="card">
+                <div class="card-content education-item">
+                    <img src="logo_jmu.png" alt="JMU Würzburg" class="edu-logo">
+                    <div style="flex: 1;">
+                        <span class="card-meta">2021 - 2024</span>
+                        <h3 class="card-title" style="margin-bottom: 0.2rem;">Master of Science, Satellite Technology
+                        </h3>
+                        <p style="margin-bottom: 0.5rem; color: var(--accent-color); font-weight: 600;">
+                            Julius-Maximilians-Universität Würzburg, Germany</p>
+                        <ul
+                            style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-secondary); text-align: left;">
+                            <li>Advanced Satellite Systems</li>
+                            <li>Spacecraft Design and Propulsion</li>
+                            <li>Orbital Mechanics</li>
+                            <li>Satellite Communication Systems</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="course-list">
-                    <li>Physics</li>
-                    <li>Chemistry</li>
-                    <li>Mathematics</li>
-                    <li>Biology</li>
-                </ul>
             </div>
-        </div>
 
-        <div class="education-card">
-            <img src="logo_la.png" alt="Little Angels' School" class="institution-logo">
-            <div class="education-content">
-                <div class="institution-title">Secondary School</div>
-                <div class="institution-details">
-                    <em>Hattiban, Lalitpur, Nepal</em><br>
-                    <strong>2009 - 2014</strong>
+            <!-- Bachelor's -->
+            <div class="card">
+                <div class="card-content education-item">
+                    <img src="logo_ku.png" alt="Kathmandu University" class="edu-logo">
+                    <div style="flex: 1;">
+                        <span class="card-meta">2016 - 2020</span>
+                        <h3 class="card-title" style="margin-bottom: 0.2rem;">Bachelor of Engineering, Mechanical
+                            Engineering</h3>
+                        <p style="margin-bottom: 0.5rem; color: var(--accent-color); font-weight: 600;">Kathmandu
+                            University, Nepal</p>
+                        <ul
+                            style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-secondary); text-align: left;">
+                            <li>Thermodynamics</li>
+                            <li>Fluid Mechanics</li>
+                            <li>Material Science</li>
+                            <li>Manufacturing Processes</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="course-list">
-                    <li>English</li>
-                    <li>Social Studies</li>
-                    <li>Basic Mathematics</li>
-                    <li>General Science</li>
-                </ul>
             </div>
+
+            <!-- High School -->
+            <div class="card">
+                <div class="card-content education-item">
+                    <img src="logo_kmc.png" alt="Kathmandu Model College" class="edu-logo">
+                    <div style="flex: 1;">
+                        <span class="card-meta">2014 - 2016</span>
+                        <h3 class="card-title" style="margin-bottom: 0.2rem;">High School, Science</h3>
+                        <p style="margin-bottom: 0.5rem; color: var(--accent-color); font-weight: 600;">Kathmandu Model
+                            College, Nepal</p>
+                        <ul
+                            style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-secondary); text-align: left;">
+                            <li>Physics, Chemistry, Mathematics, Biology</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary School -->
+            <div class="card">
+                <div class="card-content education-item">
+                    <img src="logo_la.png" alt="Little Angels' School" class="edu-logo">
+                    <div style="flex: 1;">
+                        <span class="card-meta">2009 - 2014</span>
+                        <h3 class="card-title" style="margin-bottom: 0.2rem;">Secondary School</h3>
+                        <p style="margin-bottom: 0.5rem; color: var(--accent-color); font-weight: 600;">Little Angels'
+                            School, Nepal</p>
+                        <ul
+                            style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-secondary); text-align: left;">
+                            <li>English, Social Studies, Mathematics, General Science</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <p>&copy; 2025 Milan Pathak. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Add 'loaded' class to body when the page is fully loaded
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>

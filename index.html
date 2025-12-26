@@ -1,366 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milan Pathak - Career Portfolio</title>
-    <link rel="icon" type="image/x-icon" url("favicon.ico")>
-    <style>
-        /* General Styles */
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            color: #333;
-            line-height: 1.6;
-            background-color: #ffffff;
-            overflow-x: hidden;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        body.loaded {
-            opacity: 1;
-        }
-        h1, h2, h3, p {
-            margin: 0;
-            padding: 0;
-        }
-        a {
-            text-decoration: none;
-            color: #0071e3;
-            transition: color 0.3s ease;
-        }
-        a:hover {
-            color: #0056b3;
-        }
-        /* Navigation Bar */
-        nav {
-            display: flex;
-            justify-content: center;
-            background: white;
-            border-bottom: 1px solid #e5e5e5;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 10px 0;
-        }
-        nav a {
-            margin: 0 20px;
-            font-size: 1rem;
-            color: #333;
-        }
-        nav a:hover {
-            color: #0071e3;
-        }
-        /* Parallax Section */
-        .parallax {
-            background-image: url('Photo_Index.PNG');
-            height: 100vh;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: rgb(255, 255, 255);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards;
-            animation-delay: 0.5s;
-        }
-        .parallax h1 {
-            font-size: 4rem;
-            opacity: 0;
-            animation: fadeInUp 1.5s ease-in-out forwards;
-            animation-delay: 1s;
-        }
-        .parallax p {
-            font-size: 1.5rem;
-            margin-top: 10px;
-            opacity: 0;
-            animation: fadeInUp 1.5s ease-in-out forwards;
-            animation-delay: 1.5s;
-        }
-        /* About Section */
-        .about, .publications, .certifications {
-            text-align: center;
-            padding: 50px 20px;
-            background: #fff;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-        .about.visible, .publications.visible, .certifications.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Featured Section */
-        .featured {
-            text-align: center;
-            padding: 50px 20px;
-            background: #f5f5f7;
-        }
-        .featured h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #333;
-        }
-        .featured .embeds-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .featured .embed {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 300px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .featured .embed img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-        .featured .embed h3 {
-            font-size: 1.2rem;
-            margin: 15px;
-            color: #333;
-        }
-        .featured .embed p {
-            font-size: 1rem;
-            margin: 0 15px 15px;
-            color: #555;
-        }
-        .featured .embed a {
-            font-size: 1rem;
-            color: #0071e3;
-            margin: 0 15px 15px;
-            display: inline-block;
-            font-weight: bold;
-        }
-        .featured .embed iframe {
-            width: 100%;
-            height: 200px;
-            border: none;
-        }
-        .featured .embed:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        .embeds-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .embed {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 350px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .embed img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .embed h3 {
-            font-size: 1.2rem;
-            margin: 15px;
-            color: #333;
-        }
-
-        .embed p {
-            font-size: 1rem;
-            margin: 0 15px 15px;
-            color: #555;
-        }
-
-        .embed a {
-            font-size: 1rem;
-            color: #0071e3;
-            margin: 0 15px 15px;
-            display: inline-block;
-            font-weight: bold;
-        }
-
-        .embed:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .embed:hover img {
-            transform: scale(1.02);
-        }
-        /* Keyframes for Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <title>Milan Pathak | Orbital Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <!-- <a href="about.html">About</a> -->
-        <a href="experience.html">Experience</a>
-        <a href="education.html">Education</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-    </nav>
 
-    <!-- Parallax Section -->
-    <section class="parallax">
-        <h1>Milan Pathak</h1>
-        <p>Research Assistant | Aerospace Information Technology Specialist | Mechanical Engineer</p>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Canvas Background -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Floating Navigation -->
+    <div class="dock-wrapper">
+        <nav class="dock">
+            <a href="#home" class="dock-item" title="Home"><ion-icon name="planet-outline"></ion-icon></a>
+            <a href="#mission" class="dock-item" title="Mission (About)"><ion-icon name="person-outline"></ion-icon></a>
+            <a href="#payloads" class="dock-item" title="Payloads (Projects)"><ion-icon
+                    name="rocket-outline"></ion-icon></a>
+            <a href="#trajectory" class="dock-item" title="Trajectory (Experience)"><ion-icon
+                    name="git-network-outline"></ion-icon></a>
+            <a href="#transmission" class="dock-item" title="Transmission (Contact)"><ion-icon
+                    name="mail-outline"></ion-icon></a>
+        </nav>
+    </div>
+
+    <!-- Home (Hero) -->
+    <section id="home" class="hero">
+        <h1>MILAN<br>PATHAK</h1>
+        <p>Research Assistant @ SACS /// Space Systems Engineer</p>
+        <p style="font-size: 1rem; margin-top: 1rem; opacity: 0.7;">Space Security &bull; Arms Control &bull;
+            Dual-Purpose Technologies</p>
     </section>
 
-    <!-- About Section -->
-    <section class="about">
-        <p>Hello! I am Milan Pathak, a passionate Mechanical Engineer with expertise in satellite technology, aerospace information systems, and system integration. With a background in both theoretical exploration and practical implementation, I am dedicated to advancing cutting-edge technologies that shape the future of space exploration and satellite communications. Through my education at Julius-Maximilians-Universität Würzburg and Kathmandu University, I have developed a robust skill set in mechanical design, 3D modeling, and multidisciplinary systems development.</p>
-        <p>Alongside my academic pursuits, I have had the privilege of working on a range of projects, from CubeSat docking systems to energy-efficient vehicles. My experiences have not only deepened my technical knowledge but have also fostered my leadership, project management, and teamwork skills. I am continuously looking for opportunities to push the boundaries of innovation and contribute to impactful projects in the aerospace and engineering fields.</p>
-    </section>
+    <!-- Mission Control (About / Bento Grid) -->
+    <section id="mission" class="section container">
+        <h2 class="section-title">Mission Control</h2>
+        <div class="bento-grid">
 
-    <!-- Publications Section -->
-    <section class="publications">
-        <h2>Publications</h2>
-        <div class="embeds-containers">
-            <div class="embeds">
-                <h3>Design and Development of an Active Magnetic Docking System for Small Satellites</h3>
-                <p>38th Annual Small Satellite Conference, Utah, 2024</p>
-                <p>Applications such as self-assembly and reconfiguration in space, on-orbit servicing and refueling, debris and retired elements removal are examples of future space missions that will require space objects that can perform autonomous rendezvous and docking maneuvers with other orbiting elements.</p>
-                <p>To demonstrate such capability for small satellites, the TAMARIW project is intended to develop two identical 3U CubeSats with autonomous docking systems. These satellites are scheduled to be launched by the end of the first quarter of 2026 to perform several undocking/docking maneuvers in space at predefined relative distances. In addition, the standardization and partial autonomy of the satellite modules will be tested. In case of a failure detected in one satellite, a Recovery and Takeover Protocol can be initiated. In this protocol, the other satellite can send commands to the actuators and receive sensors information directly from the recovered satellite over wireless connection.</p> 
-                <p>Developing an autonomous docking system for small satellites that can guarantee safe automated docking process is very challenging. Small satellites have strict limitations in mass and volume which result in limited power and maneuvering capability. Also, the limited volume restricts the use of complex mechanisms for berthing and docking operations. Magnetic docking systems provides a very good solution to overcome these problems since it can help in both capturing and alignment process to perform close range docking maneuvers without the need of using the propulsion system of the satellite which is difficult to utilize in close proximity. One important problem with using such a system is the effect of the disturbance torque that can generate due to the interaction of the magnetic field of the docking system with the magnetic field of the Earth. Furthermore, the heat dissipation problem needs to be thoroughly analyzed.</p> 
-                <p>This paper will describe the magnetic docking module being developed. The mechanical and electrical designs of the active magnetic docking system will be explained. The latching mechanisms intended to be developed and tested will be outlined. The guidance and docking control subsystem and the docking control strategy being developed will be described. Additionally, a thermal analysis of the guidance and docking control subsystem will be presented.</p>
-                <a href="https://digitalcommons.usu.edu/smallsat/2024/all2024/61/" target="_blank">Read More</a>
+            <!-- Bio -->
+            <div class="bento-item span-2 span-row-2">
+                <h3 style="color: var(--accent-glow); margin-bottom: 1rem;">Profile</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Research Assistant with the junior research group <strong>SACS (Support for Arms Control in
+                        Space)</strong> at the University of the Bundeswehr Munich.
+                    <br><br>
+                    My work lies at the intersection of space systems engineering and space security, focusing on the
+                    weaponization of space and arms control. I apply systems engineering methods to analyze potential
+                    space weapons, develop concepts for space conflict scenarios, and assess the offense-defense balance
+                    in Space.
+                </p>
+                <div style="margin-top: auto; display: flex; gap: 10px;">
+                    <a href="#trajectory"
+                        style="color: var(--text-main); font-weight: bold; border-bottom: 1px solid var(--accent-glow);">View
+                        Journey &rarr;</a>
+                </div>
             </div>
-            <!-- Add more publications as needed -->
+
+            <!-- Location -->
+            <div class="bento-item">
+                <ion-icon name="location-outline"
+                    style="font-size: 3rem; color: var(--accent-secondary); margin-bottom: auto;"></ion-icon>
+                <h3>Based In</h3>
+                <p>Munich, Germany</p>
+                <p style="font-size: 0.8rem; opacity: 0.6;">UniBw Munich</p>
+            </div>
+
+            <!-- Education Highlight -->
+            <div class="bento-item">
+                <ion-icon name="school-outline"
+                    style="font-size: 3rem; color: var(--accent-glow); margin-bottom: auto;"></ion-icon>
+                <h3>M.Sc.</h3>
+                <p>Satellite Technology</p>
+                <p style="font-size: 0.8rem; opacity: 0.6;">JMU Würzburg (2024)</p>
+            </div>
+
+            <!-- Tech Stack / Skills -->
+            <div class="bento-item span-2">
+                <h3 style="margin-bottom: 1rem;">Research Interests</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <span class="tag">Space Systems Engineering</span>
+                    <span class="tag">Space Security</span>
+                    <span class="tag">Dual-Purpose Tech</span>
+                    <span class="tag">Satellite Design</span>
+                    <span class="tag">Arms Control</span>
+                    <span class="tag">Engineering-Policy Link</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section class="certifications">
-        <h2>Certifications</h2>
-        <div class="embeds-container">
-            <!-- Certificate 1 -->
-            <div class="embed">
-                <img src="Certificate1.jpeg" alt="Certification 1">
-                <h3>Digital Manufacturing & Design</h3>
-                <p>Issued by: University at Buffalo & Coursera</p>
-                <!-- <p>Brief description of the certification and its relevance to your professional growth.</p> -->
-                <a href="https://www.coursera.org/account/accomplishments/verify/BG8D9QCKSPNV" target="_blank">View Certification</a>
+    <!-- Payloads (Projects) -->
+    <section id="payloads" class="section container">
+        <h2 class="section-title">Payloads</h2>
+
+        <!-- Project 1 -->
+        <article class="project-card">
+            <div class="project-bg" style="background-image: url('Photo_Thesis.png');"></div>
+            <div class="project-content">
+                <span style="color: var(--accent-glow); font-family: var(--font-heading);">Current Research &bull;
+                    SACS</span>
+                <h3>Space Arms Control & Verification</h3>
+                <p>Bridging technical analysis with strategic policy to support effective arms control regimes in outer
+                    space.</p>
+                <div class="project-tags">
+                    <span class="tag">Policy Analysis</span>
+                    <span class="tag">Conflict Scenarios</span>
+                    <span class="tag">System Architecture</span>
+                </div>
             </div>
-            <!-- Certificate 2 -->
-            <div class="embed">
-                <img src="Certificate2.jpeg" alt="Certification 2">
-                <h3>The hidden value - Lean in manufacturing and services</h3>
-                <p>Issued by: École des Ponts ParisTech & Coursera</p>
-                <!-- <p>Brief description of the certification and its relevance to your professional growth.</p> -->
-                <a href="https://www.coursera.org/account/accomplishments/verify/PXTM3ATVM58A" target="_blank">View Certification</a>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+            <div class="project-bg" style="background-image: url('Photo_TDP.jpg');"></div>
+            <div class="project-content">
+                <span style="color: var(--accent-glow); font-family: var(--font-heading);">Master Thesis &bull;
+                    2024</span>
+                <h3>Thermal Analysis of Electromagnetic Docking</h3>
+                <p>Optimized the thermal performance of the TAMARIW CubeSat docking module at JMU Würzburg.</p>
+                <div class="project-tags">
+                    <span class="tag">Thermal Simulation</span>
+                    <span class="tag">CubeSat</span>
+                </div>
             </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+            <div class="project-bg" style="background-image: url('Photo_NOAA.jpg');"></div>
+            <div class="project-content">
+                <span style="color: var(--accent-glow); font-family: var(--font-heading);">Research Project &bull;
+                    2023</span>
+                <h3>Controlled Docking Mechanism</h3>
+                <div class="project-tags">
+                    <span class="tag">Electromagnets</span>
+                    <span class="tag">Prototyping</span>
+                    <span class="tag">Control Systems</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card">
+            <div class="project-bg" style="background-image: url('Photo_Junkiri.jpg');"></div>
+            <div class="project-content">
+                <span style="color: var(--accent-glow); font-family: var(--font-heading);">Competition &bull;
+                    2020</span>
+                <h3>Energy Efficient Prototype Vehicle</h3>
+                <p>Shell Eco Marathon Asia participant. Designed 3-wheeled gasoline prototype.</p>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- Trajectory (Experience) -->
+    <section id="trajectory" class="section container">
+        <h2 class="section-title">Trajectory</h2>
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <span class="timeline-date">Present</span>
+                <h3>Research Assistant (SACS)</h3>
+                <p style="color: var(--text-muted);">University of the Bundeswehr Munich</p>
+                <p style="margin-top: 0.5rem;">Analyzing space weapons, developing conflict scenarios, and assessing
+                    offense-defense balance in space. Engineering-Policy interface.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-date">Nov 2023 - 2024</span>
+                <h3>Research Assistant</h3>
+                <p style="color: var(--text-muted);">Julius-Maximilians-Universität Würzburg</p>
+                <p style="margin-top: 0.5rem;">Designed portable multi-air sample collection devices. Optimized antenna
+                    deployment systems for Mars rovers.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-date">Jun 2022 - Oct 2024</span>
+                <h3>Student Assistant (HiWi)</h3>
+                <p style="color: var(--text-muted);">Julius-Maximilians-Universität Würzburg</p>
+                <p style="margin-top: 0.5rem;">Developed structural components for 3U CubeSats using CNC and AM.</p>
+            </div>
+
+            <div class="timeline-item">
+                <span class="timeline-date">Prior to 2021</span>
+                <h3>Education & Early Career</h3>
+                <p style="margin-top: 0.5rem;">Completed B.E. in Mechanical Engineering at Kathmandu University via
+                    Francis Turbine manufacturing projects.</p>
+            </div>
+
         </div>
     </section>
 
-    <!-- Featured Section -->
-    <section class="featured">
-        <h2>Featured In Recent Years</h2>
-        <div class="embeds-container">
-            <!-- Newspaper Article -->
-            <div class="embed">
-                <img src="eco-vehicle.jpg" alt="Newspaper Article">
-                <h3>My Republica</h3>
-                <p>Read about my work on advancing aerospace technologies.</p>
-                <a href="https://myrepublica.nagariknetwork.com/news/nepali-students-to-showcase-prototype-in-shell-eco-marathon-asia/" target="_blank">Read More</a>
+    <!-- Transmission (Contact) -->
+    <section id="transmission" class="section container" style="margin-bottom: 100px;">
+        <h2 class="section-title">Transmission</h2>
+        <div class="bento-grid" style="grid-template-rows: auto;">
+            <div class="bento-item span-2">
+                <h3>Contact Frequency</h3>
+                <p>For research collaborations or inquiries regarding Space Security and Systems Engineering.</p>
+                <a href="mailto:milan.pathak@unibw.de"
+                    style="margin-top: 2rem; font-size: 1.5rem; color: var(--accent-glow); word-break: break-all;">milan.pathak@unibw.de</a>
+                <a href="mailto:pathak.milan2010@gmail.com"
+                    style="margin-top: 0.5rem; font-size: 1rem; color: var(--text-muted); display: block;">pathak.milan2010@gmail.com</a>
             </div>
-            <!-- Facebook Video -->
-            <div class="embed">
-                <iframe src="https://www.facebook.com/teamjunkiri/videos/this-is-it/322749575059779/" frameborder="0" allowfullscreen></iframe>
-                <h3>Facebook Video</h3>
-                <p>Team Junkiri’s inspiring journey to innovation.</p>
-            </div>
-            <!-- Instagram Post -->
-            <div class="embed">
-                <iframe src="https://www.instagram.com/p/DAjZjFOIX_5/embed" frameborder="0" allowfullscreen></iframe>
-                <h3>Instagram Post</h3>
-                <p>Showcasing a glimpse of our satellite technology prototype.</p>
-            </div>
+
+            <a href="https://www.linkedin.com/in/milan-pathak-90b3a2187" target="_blank" class="bento-item"
+                style="align-items: center; justify-content: center; text-align: center;">
+                <ion-icon name="logo-linkedin" style="font-size: 3rem; color: var(--accent-secondary);"></ion-icon>
+                <span style="margin-top: 1rem;">LinkedIn</span>
+            </a>
+
+            <a href="https://github.com/milanpathak" target="_blank" class="bento-item"
+                style="align-items: center; justify-content: center; text-align: center;">
+                <ion-icon name="logo-github" style="font-size: 3rem; color: var(--text-main);"></ion-icon>
+                <span style="margin-top: 1rem;">GitHub</span>
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Milan Pathak. All rights reserved.</p>
+    <footer
+        style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.8rem; margin-bottom: 60px;">
+        <p>&copy; 2025 Milan Pathak. All Systems Nominal.</p>
     </footer>
 
-    <script>
-        // Add 'loaded' class to body when the page is fully loaded
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
-
-        // Detect if the About section is in view and add 'visible' class to show the content
-        window.addEventListener('scroll', () => {
-            const aboutSection = document.querySelector('.about');
-            const aboutPosition = aboutSection.getBoundingClientRect().top;
-
-            if (aboutPosition <= window.innerHeight / 1.5) {
-                aboutSection.classList.add('visible');
-            } else {
-                aboutSection.classList.remove('visible');
-            }
-
-            const publicationsSection = document.querySelector('.publications');
-            const publicationsPosition = publicationsSection.getBoundingClientRect().top;
-
-            if (publicationsPosition <= window.innerHeight / 1.5) {
-                publicationsSection.classList.add('visible');
-            } else {
-                publicationsSection.classList.remove('visible');
-            }
-
-            const certificationsSection = document.querySelector('.certifications');
-            const certificationsPosition = certificationsSection.getBoundingClientRect().top;
-
-            if (certificationsPosition <= window.innerHeight / 1.5) {
-                certificationsSection.classList.add('visible');
-            } else {
-                certificationsSection.classList.remove('visible');
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
