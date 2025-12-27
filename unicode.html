@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nepalify | Learn & Translate</title>
+    <title>Unicode to Nepali | Nepalify</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -28,7 +28,7 @@
             <a href="index.html" class="nav-brand">Nepalify</a>
             <div class="nav-links">
                 <a href="translate.html">Translate</a>
-                <a href="unicode.html">Unicode</a>
+                <a href="unicode.html" class="active">Unicode</a>
                 <a href="learn.html">Learn</a>
                 <a href="grammar.html">Grammar</a>
                 <a href="divyopadesh.html">Divyopadesh</a>
@@ -41,38 +41,35 @@
             </div>
         </nav>
 
-        <header class="home-hero fade-in fade-in-delay-1">
-            <div class="hero-brand">
-                <span class="logo-icon-large">अ</span>
-            </div>
-            <h1>Welcome to Nepalify</h1>
-            <p class="tagline">Your gateway to the Nepali Language.</p>
+        <header class="home-hero fade-in-delay-1" style="margin-bottom: 2rem;">
+            <h1>Unicode Converter</h1>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Type in Romanized Nepali to get Nepali Script
+            </p>
         </header>
 
-        <main class="home-grid fade-in fade-in-delay-2">
-            <a href="translate.html" class="card">
-                <h3>Translate</h3>
-                <p>Real-time English to Nepali translation powered by AI.</p>
-                <div class="card-arrow">→</div>
-            </a>
-            <a href="learn.html" class="card">
-                <h3>Learn Basics</h3>
-                <p>Essential phrases and vocabulary found in daily life.</p>
-                <div class="card-arrow">→</div>
-            </a>
-            <a href="grammar.html" class="card">
-                <h3>Grammar Rules</h3>
-                <p>Understand the structure and beauty of Nepali script.</p>
-                <div class="card-arrow">→</div>
-            </a>
-            <a href="divyopadesh.html" class="card">
-                <h3>Divyopadesh</h3>
-                <p>The Divine Counsel of Prithvi Narayan Shah.</p>
-                <div class="card-arrow">→</div>
-            </a>
+        <main class="transliteration-box fade-in-delay-1">
+            <div class="input-block">
+                <label for="unicodeInput">Unicode</label>
+                <textarea id="unicodeInput" placeholder="Type Romanized Nepali (e.g. mero nam...)"
+                    spellcheck="false"></textarea>
+            </div>
+
+            <div class="connector">
+                <div class="arrow-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4L12 20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="output-block">
+                <label for="unicodeOutput">Nepali</label>
+                <textarea id="unicodeOutput" readonly placeholder="Converted text will appear here..."></textarea>
+            </div>
         </main>
 
-        <footer class="fade-in fade-in-delay-2">
+        <footer class="fade-in-delay-2">
             <p>&copy; 2025 Nepalify</p>
         </footer>
     </div>
